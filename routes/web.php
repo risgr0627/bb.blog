@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PostController@index');
+Route::get('/posts/show/{post}','PostController@show');
+Route::get('/posts/user/{post}','PostController@user');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
