@@ -26,8 +26,8 @@
                         <a  href="/posts/show/{{ $post->id }}"><p class="card-text">{{ $post->title  }}</p></a>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                           <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">add</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">nice!</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">追加</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">いいね</button>
                           </div>
                           <small class="text-muted">{{ $post->created_at  }}</small>
                         </div>
