@@ -8,6 +8,9 @@
                 <div class="py-5">
                   <p>{{ $post->body }}</p>
                 </div>
+                <div class="w-50">
+                  <img src="{{  $post->image  }}" class="img-fluid ">
+                </div>
               </div>
             </div>
           </div>

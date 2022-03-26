@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +12,15 @@
 
 Route::get('/','PostController@index');
 Route::get('/posts/show/{post}','PostController@show');
-Route::get('/posts/user/{post}','PostController@user');
+Route::get('/posts/create','PostController@create');
+
+Route::resource('/users', 'UsersController', ['only' => ['show']]);
+// Route::resource('/mypage/{id}', 'MypageController', ['only' => ['show']]);
+
+Route::post('/posts','PostController@store');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
