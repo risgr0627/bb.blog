@@ -13,11 +13,15 @@
 Route::get('/','PostController@index');
 Route::get('/posts/show/{post}','PostController@show');
 Route::get('/posts/create','PostController@create');
+Route::get('/edit','MypageController@edit');
+
 
 Route::resource('/users', 'UsersController', ['only' => ['show']]);
-// Route::resource('/mypage/{id}', 'MypageController', ['only' => ['show']]);
+Route::resource('/mypage', 'MypageController', ['only' => ['index']]);
 
 Route::post('/posts','PostController@store');
+
+Route::put('/update','MypageController@update');
 
 Auth::routes();
 

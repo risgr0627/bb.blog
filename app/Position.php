@@ -15,4 +15,12 @@ class Position extends Model
     public function user(){
         return $this->hasMany('App\User');
     }
+    
+    protected static function boot(){
+        parent::boot();
+        
+        self::saving(function($post){
+           $post->user_id = \Auth::id(); 
+        });
+    }
 }

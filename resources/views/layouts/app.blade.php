@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-dark bg-secondary shadow-sm border rounded-pill">
+        <nav class="navbar navbar-dark bg-secondary shadow-sm border rounded sticky-top">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
                     <strong>BB.blog</strong>
@@ -64,6 +64,8 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li><li class="nav-item">
+                                <a class="nav-link" href="/mypage">マイページ</a>
                             </li>
                         @endguest
                     </ul>
@@ -77,7 +79,7 @@
         <footer class="text-muted py-5">
           <div class="container">
             <a href="/posts/create">create</a>
-            <p class="float-end mb-1">
+            
               <a href="/">Back to top</a>
             </p>
           </div>

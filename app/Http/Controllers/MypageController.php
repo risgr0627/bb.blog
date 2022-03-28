@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Post;
+use App\Profile;
+use App\Team;
+use App\Position;
+use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller
 {
@@ -11,9 +17,24 @@ class MypageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $user = Auth::user();
+        
+        $posts = Post::where('user_id', $user->id) 
+            ->orderBy('created_at', 'desc') 
+            ->paginate(10);
+        $profile = Profile::where('user_id', $user->id)->first();
+        
+        $position = Position::find($user->position_id);
+        
+        return view('users/mypage', [
+            'user' => $user, 
+            'posts' => $posts, 
+            'position' => $position,
+            'profile' => $profile,
+        ]);
+        // return dd($profile);
     }
 
     /**
@@ -43,11 +64,11 @@ class MypageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        // $user = User::find($user->id); 
+        // $user = Auth::user();
         // $posts = Post::where('user_id', $user->id) ->orderBy('created_at', 'desc') ->paginate(10); 
-        // return view('users.mypage', [
+        // return view('mypage', [
         //     'user_name' => $user->name, 
         //     'posts' => $posts, 
         // ]);
@@ -59,9 +80,23 @@ class MypageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $user = Auth::user();
+        
+        $posts = Post::where('user_id', $user->id) 
+            ->orderBy('created_at', 'desc') 
+            ->paginate(10);
+        $profile = Profile::where('user_id', $user->id)->first();
+        
+        $position = Position::find($user->position_id);
+        
+        return view('edit', [
+            'user' => $user, 
+            'posts' => $posts, 
+            'position' => $position,
+            'profile' => $profile,
+        ]);
     }
 
     /**
@@ -71,9 +106,25 @@ class MypageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = new User();
+        $user = Auth::user();
+        $user->position_id = $request->position_id;
+        
+        $profile = Profile::where('user_id',$user->id)->update([
+            'team' => $request->team,
+            'height' => $request->height,
+            'weight' => $request->weight
+            ]);
+        // $profile->team = $request->team;
+        // $profile->height = $request->height;
+        // $profile->weight = $request->weight;
+        
+        $user->save();
+        // $profile->save();
+        
+        return redirect()->action('MypageController@index');
     }
 
     /**

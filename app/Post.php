@@ -15,6 +15,11 @@ class Post extends Model
         'image',
         'category_id',
         'user_id',
+        'at_bat',
+        'hit',
+        'homerun',
+        'four_dead_balls',
+        'bunt'
     ];
     
     

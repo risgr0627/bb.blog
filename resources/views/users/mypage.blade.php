@@ -3,17 +3,45 @@
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">{{  $user_name  }}</h1>
-                <p class="lead text-muted"></p>
+                <h1 class="fw-light">{{  $user->name  }}</h1>
+                チーム:<span>
+                          @if(isset( $profile->team ))
+                            {{$profile->team}}
+                          @else
+                            未設定
+                          @endif
+                        </span><br>
+                身長：<span>
+                          @if(isset( $profile->height ))
+                            {{$profile->height}}
+                          @else
+                            未設定
+                          @endif
+                      </span><br>
+                体重：<span>
+                          @if(isset( $profile->weight ))
+                                {{$profile->weight}}
+                          @else
+                            未設定
+                          @endif
+                  
+                      </span><br>
+                ポジション：<span>
+                                @if(isset( $position->name ))
+                                  {{$position->name}}
+                                @else
+                                  未設定
+                                @endif
+                            </span>
+                <a href="/edit">編集</a>
               </div>
             </div>
-           <div class="album py-5 bg-light">
+           <div class="album  bg-light">
             <div class="container">
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
                 @foreach ($posts as $post)
-                <div class="col pt-5">
+                <div class="col">
                   <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
                     <img src="{{  $post->image  }}" >
                     <div class="card-body">
                         <a  href="/posts/show/{{ $post->id }}"><p class="card-text text-left">{{ $post->title  }}</p></a>

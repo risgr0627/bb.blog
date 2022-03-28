@@ -4,10 +4,38 @@
             <div class="row py-lg-5">
               <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">{{  $user_name  }}</h1>
-                <p class="lead text-muted"></p>
+                チーム:<span>
+                          @if(isset( $profile->team ))
+                            {{$profile->team}}
+                          @else
+                            未設定
+                          @endif
+                        </span><br>
+                身長：<span>
+                          @if(isset( $profile->height ))
+                            {{$profile->height}}
+                          @else
+                            未設定
+                          @endif
+                      </span><br>
+                体重：<span>
+                          @if(isset( $profile->weight ))
+                                {{$profile->weight}}
+                          @else
+                            未設定
+                          @endif
+                  
+                      </span><br>
+                ポジション：<span>
+                                @if(isset( $position->name ))
+                                  {{$position->name}}
+                                @else
+                                  未設定
+                                @endif
+                            </span>
               </div>
             </div>
-           <div class="album py-5 bg-light">
+           <div class="album  bg-light">
             <div class="container">
               <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
                 @foreach ($posts as $post)

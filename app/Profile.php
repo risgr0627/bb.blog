@@ -13,6 +13,7 @@ class Profile extends Model
         'position',
         'height',
         'weight',
+        'team',
     ];
     
     // public function getByLimit(int $limit_count = 10){
@@ -25,5 +26,13 @@ class Profile extends Model
     
     public function user(){
         return $this->belongsTo('App\User');
+    }
+    
+    protected static function boot(){
+        parent::boot();
+        
+        self::saving(function($post){
+           $post->user_id = \Auth::id(); 
+        });
     }
 }

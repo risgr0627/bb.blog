@@ -28,14 +28,19 @@ class PostController extends Controller
         
             $post->title = $request->title;
             $post->body = $request->body;
+            $post->at_bat = $request->at_bat;
+            $post->hit = $request->hit;
+            $post->homerun = $request->homerun;
+            $post->four_dead_balls = $request->four_dead_balls;
+            $post->bunt = $request->bunt;
+            $post->category_id = $request->category_id;
             
-    
             $image = $request->file('image');
              
             $path = Storage::disk('s3')->putFile('/', $image, 'public');
               
             $post->image = Storage::disk('s3')->url($path);
-            $post->category_id = $request->category_id;
+            
         
             $post->save();
             
@@ -43,6 +48,8 @@ class PostController extends Controller
             
             return redirect('/');
     }
+
+   
     
     
 }
