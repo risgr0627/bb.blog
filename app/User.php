@@ -45,6 +45,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Profile');
     }
     
+    public function data(){
+        return $this->belongsTo('App\Data');
+    }
+    
     public function team(){
         return $this->belongsTo('App\Team');
     }

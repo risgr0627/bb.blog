@@ -106,23 +106,35 @@ class MypageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Profile $profile)
     {
         $user = new User();
         $user = Auth::user();
         $user->position_id = $request->position_id;
+        $user->save();
         
-        $profile = Profile::where('user_id',$user->id)->update([
+        $profile = Profile::where('user_id',$user->id)->first();
+        if(isset($profile)){
+            $profile ->update([
             'team' => $request->team,
             'height' => $request->height,
-            'weight' => $request->weight
+            'weight' => $request->weight,
+            'achievement' => $request->achievement
             ]);
-        // $profile->team = $request->team;
-        // $profile->height = $request->height;
-        // $profile->weight = $request->weight;
+        }elseif(!isset($profile)){
+            $newprofile = new Profile();
+                $newprofile->team = $request->team;
+                $newprofile->height = $request->height;
+                $newprofile->weight = $request->weight;
+                $newprofile->achievement = $request->achievement;
+                
+                $newprofile->save();
+        }
+        // dd($profile);
         
-        $user->save();
-        // $profile->save();
+        
+        
+        
         
         return redirect()->action('MypageController@index');
     }

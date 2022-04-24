@@ -1,16 +1,16 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
     @section('content')
-        <div class="">
+        <div class="container">
             <form action="/update" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <p>チーム</p>
-                <input type="text" name="team" value="@if(isset( $profile->team )){{$profile->team}}@else未設定@endif">
+                    <lavel>チーム</lavel>
+                <input type="text" class="form-control col-md-5" name="team" value="@if(isset( $profile->team )){{$profile->team}}@endif">
                 </div>
                 <div class="form-group">
-                    <p>ポジション</p>
-                <select name="position_id">
+                    <lavel>ポジション</lavel>
+                <select class="form-control col-md-5" name="position_id">
                         <option value="@if(isset( $position->name ))
                                         {{$position->id}}
                                         @else
@@ -32,16 +32,21 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <p>身長</p>
-                <input type="text" name="height" value="@if(isset( $profile->height )){{$profile->height}}@else未設定@endif">
+                    <lavel>身長</lavel>
+                    <input type="number" class="form-control col-md-5" name="height" value="@if(isset( $profile->height )){{$profile->height}}@endif">cm
                 </div>
                 <div class="form-group">
-                    <p>体重</p>
-                <input type="text" name="weight" value="@if(isset( $profile->weight )){{$profile->weight}}@else未設定@endif">
+                    <lavel>体重</lavel>
+                    <input type="number" class="form-control col-md-5" name="weight" value="@if(isset( $profile->weight )){{$profile->weight}}@endif">kg
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="投稿">
+                    <lavel>実績</lavel>
+                    <textarea type="text" class="form-control col-md-5" name="achievement">@if(isset( $profile->achievement )){{$profile->achievement}}@endif</textarea>
                 </div>
+                <div class="form-group w-50">
+                    <input type="submit" class="btn btn-primary col-md-5 " value="更新" >
+                </div>
+                
             </form>
         </div>
    @endsection
