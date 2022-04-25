@@ -18,10 +18,10 @@
                         <div class="form-inline list-unstyled ">
                           <p class="ml-3 mr-3">投手成績:</p>
                           <li class="ml-3 mr-3">投球回  {{$post->number_of_pitches}}</li>
-                          <li class="mr-3">安打  {{$post->conceded}}</li>
-                          <li class="mr-3">ホームラン   {{$post->strikeout}}</li>
-                          <li class="mr-3">四死球   {{$post->hi_hit}}</li>
-                          <li>犠打  {{$post->yo_four_dead_balls}}</li>
+                          <li class="mr-3">失点  {{$post->conceded}}</li>
+                          <li class="mr-3">奪三振   {{$post->strikeout}}</li>
+                          <li class="mr-3">被安打   {{$post->hi_hit}}</li>
+                          <li>与四死球  {{$post->yo_four_dead_balls}}</li>
                         </div>
                     @endif
                   </div>

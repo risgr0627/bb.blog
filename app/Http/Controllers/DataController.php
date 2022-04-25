@@ -46,7 +46,7 @@ class DataController extends Controller
             $bat = $at_bat - $four_dead_ball - $bunt;
                 
             
-        if($at_bat === 0 && $number_of_pitches === 0){
+        if($at_bat === 0 && $number_of_pitches === 0 && $number_of_pitches ===0){
                     
                     $msg = '＊まだ試合データがありません';
                     return view('/users/data',['msg' => $msg]);
@@ -55,10 +55,15 @@ class DataController extends Controller
                 
                     $batting_average = round(($hit / $bat),3);
                     $on_base_percentage = round((($hit + $four_dead_ball) / ($bat + $four_dead_ball + $bunt)),3);
-                    // $earned_run_average = round((($conceded * 9 * 3) / ($number_of_pitches * 3)),3);
+                    $earned_run_average = round((($conceded * 9 * 3) / ($number_of_pitches * 3)),2);
+                    $strikeout_average = round((($strikeout * 9) / ($number_of_pitches)),2);
+                    $hi_batting_average = 0;
                     $data->update([
-                        'batting_average' => $batting_average ,   
-                        'on_base_percentage' => $on_base_percentage
+                        'batting_average' => $batting_average,
+                        'on_base_percentage' => $on_base_percentage,
+                        'earned_run_average' => $earned_run_average, 
+                        'strikeout_average' => $strikeout_average,
+                        'hi_batting_average' => $hi_batting_average
                     ]);
                 }elseif(!isset($data)){
                     
@@ -66,8 +71,16 @@ class DataController extends Controller
                     
                     $batting_average = round(($hit / $bat),3);
                     $on_base_percentage = round((($hit + $four_dead_ball) / ($bat + $four_dead_ball + $bunt)),3);
+                    $earned_run_average = round((($conceded * 9 * 3) / ($number_of_pitches * 3)),2);
+                    $strikeout_average = round((($strikeout * 9) / ($number_of_pitches)),2);
+                    $hi_batting_average = 0;
+                    
+                    
                     $data->batting_average = $batting_average;
                     $data->on_base_percentage = $on_base_percentage;
+                    $data->earned_run_average = $earned_run_average;
+                    $data->strikeout_average = $strikeout_average;
+                    $data->hi_batting_average = $hi_batting_average;
                     
                     $data->save();
                 }
@@ -87,9 +100,12 @@ class DataController extends Controller
                     'conceded' => $conceded,
                     'strikeout' => $strikeout,
                     'hi_hit' => $hi_hit,
-                    'bunt' => $bunt,
                     'yo_four_dead_balls' => $yo_four_dead_balls,
+                    'earned_run_average' => $earned_run_average,
+                    'strikeout_average' => $strikeout_average,
+                    'hi_batting_average' => $hi_batting_average
                 ]);
+            // dd($earned_run_average);
         }
         
     
@@ -102,10 +118,14 @@ class DataController extends Controller
                     
                     $msg = '＊選択されていません';
                     return view('/rankpage',['msg' => $msg]);
-        }else{
-        $kind = Data::orderBy($request->kind,'desc')->get();
+        }elseif($request->kind === 'batting_average' || $request->kind === 'on_base_percentage'){
+            $kind = Data::orderBy($request->kind,'desc')->get();
         
-        return view('rankpage')->with(['kinds' => $kind, 'request' => $request->kind]);
+            return view('rankpage')->with(['kinds' => $kind, 'request' => $request->kind]);
+        }elseif($request->kind === 'earned_run_average' || $request->kind === 'strikeout_average'){
+            $kind = Data::orderBy($request->kind,'asc')->get();
+        
+            return view('rankpage')->with(['kinds' => $kind, 'request' => $request->kind]);
         }
     }
     

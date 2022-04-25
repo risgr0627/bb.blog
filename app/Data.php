@@ -9,7 +9,11 @@ class Data extends Model
     protected $table = 'data';
     
     protected $fillable=[
-            'batting_average'
+            'batting_average',
+            'on_base_percentage',
+            'earned_run_average',
+            'strikeout_average',
+            'hi_batting_average'
         ];
         
     public function user(){

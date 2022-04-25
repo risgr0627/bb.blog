@@ -21,7 +21,8 @@
                 @foreach ($posts as $post)
                 <div class="col pt-5">
                   <div class="card shadow-sm " style="height: 420px">
-                    <a  href="{{ route('users.show', $post->user_id)}}"><p class="card-header">{{ $post->user->name}}</p></a>
+                    <a  href="{{ route('users.show', $post->user_id)}}"><p class="card-header bg-secondary text-white font-weight-bold">{{ $post->user->name}}</p></a>
+                    <!--<p class="card-header bg-dark card-link">{{ $post->user->name}}</p>-->
                     @if(preg_match('/\.gif$|\.png$|\.jpg$|\.jpeg$|\.bmp$|\.webp$/i', $post->image))
                       <img src="{{  $post->image  }}" style="max-height: 70%" class="Card-img-top">
                     @else
@@ -31,7 +32,7 @@
                     @endif
                     <div class="card-body" >
                        
-                        <a  href="/posts/show/{{ $post->id }}"><p class="card-title">{{ $post->title  }}</p></a>
+                        <a  href="/posts/show/{{ $post->id }}"><p class="card-title text-secondary">{{ $post->title  }}</p></a>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                           <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-outline-secondary">追加</button>
