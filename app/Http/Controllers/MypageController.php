@@ -114,14 +114,14 @@ class MypageController extends Controller
         $user->save();
         
         $profile = Profile::where('user_id',$user->id)->first();
-        if(isset($profile)){
+        if(!empty($profile)){
             $profile ->update([
             'team' => $request->team,
             'height' => $request->height,
             'weight' => $request->weight,
             'achievement' => $request->achievement
             ]);
-        }elseif(!isset($profile)){
+        }elseif(empty($profile)){
             $newprofile = new Profile();
                 $newprofile->team = $request->team;
                 $newprofile->height = $request->height;
