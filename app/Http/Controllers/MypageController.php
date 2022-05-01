@@ -108,20 +108,25 @@ class MypageController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        $user = new User();
         $user = Auth::user();
         $user->position_id = $request->position_id;
         $user->save();
         
         $profile = Profile::where('user_id',$user->id)->first();
-        if(!empty($profile)){
-            $profile ->update([
-            'team' => $request->team,
-            'height' => $request->height,
-            'weight' => $request->weight,
-            'achievement' => $request->achievement
-            ]);
-        }elseif(empty($profile)){
+        if(isset($profile)){
+            // $profile ->update([
+            // 'team' => $request->team,
+            // 'height' => $request->height,
+            // 'weight' => $request->weight,
+            // 'achievement' => $request->achievement
+            // ]);
+            $profile->team = $request->team;
+            $profile->height = $request->height;
+            $profile->weight = $request->weight;
+            $profile->achievement = $request->achievement;
+            
+            $profile->save();
+        }elseif(!isset($profile)){
             $newprofile = new Profile();
                 $newprofile->team = $request->team;
                 $newprofile->height = $request->height;
