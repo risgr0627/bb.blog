@@ -14,6 +14,13 @@ use Validator;
 class PostController extends Controller
 {
     public function index(Post $post){
+        $positions = ['ピッチャー','キャッチャー','ファースト','セカンド','サード','ショート','レフト','センター','ライト'];
+        
+        foreach($positions as $position){
+            $newposition = new Position();
+            $newposition -> name = $position;
+            $newposition->save();
+        }
         return view('index')->with(['posts' => $post->getPaginateByLimit(),]);
     }
     
