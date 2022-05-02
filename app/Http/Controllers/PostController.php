@@ -7,6 +7,7 @@ use App\Position;
 use App\User;
 use App\Team;
 use App\Profile;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -18,9 +19,19 @@ class PostController extends Controller
         
         foreach($positions as $position){
             $newposition = new Position();
-            $newposition -> name = $position;
+            $newposition->name = $position;
             $newposition->save();
         }
+        
+        // $categories = ['試合','練習'];
+        
+        // foreach($categories as $category){
+        //     $newcategory = new Category;
+        //     $newcategory->update([
+        //         'name' => $category    
+        //     ]);
+        // }
+        
         return view('index')->with(['posts' => $post->getPaginateByLimit(),]);
     }
     

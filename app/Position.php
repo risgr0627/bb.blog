@@ -9,18 +9,18 @@ class Position extends Model
     protected $table = 'positions';
     
     protected $fillable = [
-        'name'    
+        'name'
     ];
     
     public function user(){
         return $this->hasMany('App\User');
     }
     
-    protected static function boot(){
-        parent::boot();
+    // protected static function boot(){
+    //     parent::boot();
         
-        self::saving(function($post){
-           $post->user_id = \Auth::id(); 
-        });
-    }
+    //     self::saving(function($post){
+    //       $post->user_id = \Auth::id(); 
+    //     });
+    // }
 }

@@ -14,7 +14,8 @@ class AddTypeToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('position_id')->unsigned();
+            $table->integer('age')->nullable();
+            $table->integer('position_id')->constrained()->nullable();
         });
     }
 
