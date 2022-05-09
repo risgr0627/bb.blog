@@ -37,7 +37,6 @@
                             <button type="button" class="btn btn-sm btn-outline-secondary">いいね</button>
                           </div>
                           <small class="text-muted">{{ $post->created_at  }}</small>
-                          <small class="text-muted">{{ $post->image  }}</small>
                         </div>
                       </div>
                     </div>
