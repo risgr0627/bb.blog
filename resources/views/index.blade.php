@@ -17,9 +17,9 @@
           <div class="container album py-5 bg-light ">
             <div class="">
               <h1>最新の投稿</h1>
-              <div class="w-50 row d-flex justify-content-center">
+              <div class=" row ">
                 @foreach ($posts as $post)
-                <div class="col-12">
+                <div class="col-4">
                   <div class="card shadow-sm " >
                     <a  href="{{ route('users.show', $post->user_id)}}"><p class="card-header bg-secondary text-white font-weight-bold">{{ $post->user->name}}</p></a>
                     @if(preg_match('/\.gif$|\.png$|\.jpg$|\.jpeg$|\.bmp$|\.webp$/i', $post->image))
