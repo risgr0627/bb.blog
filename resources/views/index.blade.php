@@ -14,18 +14,18 @@
     @extends('layouts.app')　　
     
     @section('content')
-          <div class=" container album py-5 bg-light">
+          <div class="container album py-5 bg-light ">
             <div class="">
               <h1>最新の投稿</h1>
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+              <div class="w-50 row d-flex justify-content-center">
                 @foreach ($posts as $post)
-                <div class="col pt-5">
-                  <div class="card shadow-sm " style="height: 420px">
+                <div class="col-12">
+                  <div class="card shadow-sm " >
                     <a  href="{{ route('users.show', $post->user_id)}}"><p class="card-header bg-secondary text-white font-weight-bold">{{ $post->user->name}}</p></a>
                     @if(preg_match('/\.gif$|\.png$|\.jpg$|\.jpeg$|\.bmp$|\.webp$/i', $post->image))
-                      <img src="{{  $post->image  }}" style="max-height: 70%" class="Card-img-top">
+                      <img src="{{  $post->image  }}"  class="Card-img-top">
                     @else
-                      <video controls preload="auto"style="height: 60%" class="Card-img-top">
+                      <video controls preload="auto" class="Card-img-top">
                         <source src="{{$post->image}}" type="video/mp4">
                       </video>
                     @endif
