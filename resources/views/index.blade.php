@@ -20,7 +20,7 @@
               <div class=" row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($posts as $post)
                 <div class="col">
-                  <div class="card shadow-sm " >
+                  <div class="card shadow-sm mt-5" >
                     <a  href="{{ route('users.show', $post->user_id)}}"><p class="card-header bg-secondary text-white font-weight-bold">{{ $post->user->name}}</p></a>
                     @if(preg_match('/\.gif$|\.png$|\.jpg$|\.jpeg$|\.bmp$|\.webp$/i', $post->image))
                       <img src="{{  $post->image  }}"  class="Card-img-top">

@@ -56,8 +56,7 @@ class PostController extends Controller
                     
                     $msg = '＊入力が不十分です';
                     return view('/create',['msg' => $msg]);
-                    // return redirect('/errorpage')->withErrors($validator)->withInput();
-                    // dd($validator);
+                    
                     
                 }else{
                     
