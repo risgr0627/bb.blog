@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +10,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PostController@index');
+Route::get('/posts/show/{post}','PostController@show');
+Route::get('/posts/create','PostController@create');
+Route::post('/posts','PostController@store');
+
+
+
+Route::resource('/users', 'UsersController', ['only' => ['show']]);
+Route::post('/serch','UsersController@serch');
+Route::get('/serchpage','UsersController@serchpage');
+
+Route::get('/data','DataController@index');
+Route::get('/rankpage','DataController@rankpage');
+Route::post('/rankkinds','DataController@show');
+
+
+Route::resource('/mypage', 'MypageController', ['only' => ['index']]);
+Route::get('/edit','MypageController@edit');
+Route::put('/update','MypageController@update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
